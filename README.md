@@ -11,6 +11,19 @@ npm run dev
 
 Open the local URL printed by Vite. No backend, account, or external image service is needed.
 
+## Publish on GitHub Pages
+
+The included `.github/workflows/deploy-pages.yml` builds and deploys the site on every push to `main`. Vite uses relative asset paths so the build works under the repository's Pages URL as well as a custom domain.
+
+1. In the GitHub repository, open **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Commit and push this setup to `main`. Under **Actions**, follow **Deploy to GitHub Pages**. If the setup was already pushed before enabling Pages, select that workflow and click **Run workflow** on `main`.
+4. Once deployment succeeds, open https://mariandev.github.io/9-slice-validator/ (also shown in **Settings → Pages**).
+
+If Actions are restricted, allow the official `actions/*` actions under **Settings → Actions → General**. If the `github-pages` environment has deployment branch restrictions, allow `main` under **Settings → Environments → github-pages**. No repository secrets or personal access token are needed; the workflow declares its deployment permissions.
+
+For a different default branch, update `on.push.branches` in the workflow. Generated `dist/` files do not need to be committed.
+
 ## Features
 
 - Upload or drag and drop an image; includes a generated sample panel.
